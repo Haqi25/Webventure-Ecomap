@@ -23,6 +23,7 @@ model Users {
    role        UserRole @default(CONSUMER)
   isVerified  Boolean  @default(false)
   avatar      String?
+  refreshToken  String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
