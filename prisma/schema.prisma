@@ -17,13 +17,14 @@ datasource db {
 model Users {
   id          Int      @id @default(autoincrement())
   email       String   @unique
-  password    String
+  password    String?
   fullName    String
-  phone       String?
+  phone       String?    @unique   
    role        UserRole @default(CONSUMER)
   isVerified  Boolean  @default(false)
   avatar      String?
   refreshToken  String?
+  verifyToken  String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
