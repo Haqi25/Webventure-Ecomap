@@ -1,0 +1,175 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Users {
+  id          Int      @id @default(autoincrement())
+  email       String   @unique
+  password    String
+  fullName    String
+  phone       String?
+   role        UserRole @default(CONSUMER)
+  isVerified  Boolean  @default(false)
+  avatar      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+
+   businesses  Business[]
+   reviews     Review[]
+
+  @@map("users")
+}
+
+enum UserRole {
+   UMKM
+  CONSUMER
+  ADMIN
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  slug        String   @unique
+  icon        String?
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+ businesses Business[]
+
+  @@map("categories")
+}
+
+model Business {
+  id                    Int      @id @default(autoincrement())
+  businessName          String
+  slug                  String   @unique
+  description           String?
+  address               String
+  latitude              Float
+  longitude             Float
+  phone                 String?
+  whatsapp              String?
+  website               String?
+  email                 String?
+  operatingHours        Json?
+  sustainabilityScore   Int     @default(0)
+  isActive              Boolean @default(true)
+  isApproved            Boolean @default(false)
+  averageRating         Float?  @default(0)
+  totalReviews          Int     @default(0)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  // Foreign Keys
+  ownerId               Int
+  categoryId            Int
+
+  // Relations
+  owner                 Users     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  category              Category @relation(fields: [categoryId], references: [id])
+   photos                BusinessPhoto[]
+   reviews               Review[]
+  sustainabilityPractices SustainabilityPractice[]
+   analytics             BusinessAnalytics[]
+
+  @@map("businesses")
+}
+
+model Review {
+  id                    Int      @id @default(autoincrement())
+  ratingOverall        Int
+  ratingSustainability Int?
+  ratingQuality        Int?
+  comment              String?
+  isApproved           Boolean  @default(true)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  businessId Int
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+ userId     Int? 
+  user       Users?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@map("reviews")
+}
+
+
+model BusinessPhoto {
+  id         Int      @id @default(autoincrement())
+  fileName   String
+  filePath   String
+  fileSize   Int?
+  mimeType   String?
+  isPrimary  Boolean  @default(false)
+  uploadedAt DateTime @default(now())
+  businessId Int
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@map("business_photos")
+}
+
+
+model BusinessAnalytics {
+  id         Int        @id @default(autoincrement())
+  actionType ActionType
+  userIp     String?
+  userAgent  String?
+  referrer   String?
+  createdAt  DateTime   @default(now())
+ businessId Int
+ business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@map("business_analytics")
+}
+
+enum ActionType {
+  VIEW
+  CALL
+  WHATSAPP
+  DIRECTION
+  WEBSITE
+}
+
+model SustainabilityPractice {
+  id                  Int      @id @default(autoincrement())
+  practiceType        String
+  practiceDescription String?
+  isVerified          Boolean  @default(false)
+  scoreWeight         Int      @default(10)
+  createdAt           DateTime @default(now())
+   businessId Int
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@map("sustainability_practices")
+}
+
+
+model FinancingOption {
+  id              Int      @id @default(autoincrement())
+  institutionName String
+  productName     String
+  productType     String // KUR, Kredit Komersial, dll
+  interestRate    String
+  maxAmount       String
+  tenor           String
+  requirements    String
+  contactInfo     Json
+  description     String?
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("financing_options")
+}
