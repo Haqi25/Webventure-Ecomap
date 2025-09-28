@@ -121,3 +121,76 @@ export const AccessToken = async({refreshToken}) => {
        return {newAccessToken}
 });
 }
+
+
+export const requestNewPassword  = async({email}) => {
+   const user = await prisma.users.findUnique({ where : {email}});
+
+    if (!user) return res.status(404).json({ error : "User Not Found"});
+
+    if(!user.isVerified) return res.status(400).json({error : "User Not Verified"})
+
+    const token = jwt.sign(
+
+      {email : user.email},
+      process.env.JWT_SECRET,
+      { expiresIn: "20m"}
+
+    )
+
+    await prisma.users.update({
+      where : {id : user.id},
+      data :{verifyToken : token}
+  })
+
+
+    const resetlink = `http://localhost:3002/api/auth/resetpassword?token=${token}`
+
+      const transporter = nodemailer.createTransport({
+        service : "gmail",
+        auth : {
+            user : process.env.EMAIL_USER,
+            pass : process.env.USER_PASS
+        }
+    })
+  await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Verify your email",
+      html: `
+        <h3>Welcome, ${user.fullName}!</h3>
+        <p>Please reset your password by clicking below:</p>
+        <a href="${resetlink}">${resetlink}</a>
+      `,
+    });
+}
+
+export const resetPass = async({token, newPassword})=>{
+
+  const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+    const user = await prisma.users.findFirst({
+      where : {email : decoded.email, verifyToken : token}
+    })
+
+    if(!user) return res.status(404).json({message : "User not found"});
+    if(!user.isVerified) return res.status(403).json({message : "user not verified please verify first"})
+
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    await prisma.users.update({
+      where : {id : user.id},
+      data : { password : hashedPassword, verifyToken : null}
+  })
+}
+
+
+export const logoutUser =  async({userid}) => {
+
+     const user = await prisma.users.update({
+      where : {id : userid},
+      data: {refreshToken: null}
+     })
+
+     return{user}
+}
