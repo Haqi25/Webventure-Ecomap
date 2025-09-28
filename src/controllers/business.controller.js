@@ -11,7 +11,7 @@ export const searchUmkm = async (req, res) => {
 res.json(Business)
 
     } catch (error) {
-        return res.status(500).json({error : error.message})
+        return res.status(403).json({error :"umkm tidak ditemukan"})
     }
 }
 
