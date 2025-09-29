@@ -1,9 +1,8 @@
-import { Prisma } from "@prisma/client";
 import prisma from "../db/index.js";
 import nodemailer from "nodemailer";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { refreshToken } from "../controllers/auth.controller.js";
+
 
 export const registerUser = async({fullName, email, avatar, phone, password}) => {
 

@@ -1,6 +1,5 @@
 import {loginUser, registerUser, verifyEmail,  AccessToken, resetPass, logoutUser } from "../services/auth.services.js"
 import { Prisma } from "@prisma/client";
-// import prisma from "../db/index.js";
 import { requestNewPassword } from "../services/auth.services.js";
 export const register = async (req, res) => {
 
