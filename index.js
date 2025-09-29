@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import authUser from "./src/routes/auth.routes.js"
 import umkm from "./src/routes/business.routes.js"
 import category from "./src/routes/category.routes.js"
+import review from "./src/routes/review.routes.js"
 import { adminMiddleware } from "./src/middlewares/admin.middleware.js";
 import { authMiddleware } from "./src/middlewares/auth.middleware.js";
 import profile from "./src/routes/profile.routes.js"
@@ -20,6 +21,7 @@ app.use("/api/auth", authUser);
 app.use("/api/umkm", umkm);
 app.use("/api/admin/category", adminMiddleware, category)
 app.use("/api/profile", authMiddleware, profile)
+app.use("/api/review", authMiddleware, review )
 
 const PORT = process.env.PORT || 3000;
 
