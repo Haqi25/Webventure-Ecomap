@@ -1,20 +1,22 @@
 import prisma from "../db/index.js"
-import { search, nearby } from "../services/business.service.js";
+import { search, nearby,  business } from "../services/business.service.js";
 
 export const searchUmkm = async (req, res) => {
+  try {
+    const { q, category, page = 1, limit = 10 } = req.query;
 
-    try {
-        const  {q, category} = req.query;
+    // service return { data, meta }
+    const { data, meta } = await search({ q, category, page: Number(page), limit: Number(limit) });
 
-        const {Business} = await search({q, category})
-
-res.json(Business)
-
-    } catch (error) {
-        return res.status(403).json({error :"umkm tidak ditemukan"})
-    }
-}
-
+    res.json({
+      message: "Daftar UMKM ditemukan",
+      data,
+      meta,
+    });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
 
 export const getNearby = async (req, res) => {
   try {
@@ -31,3 +33,25 @@ export const getNearby = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+
+
+
+export const businessId = async(req, res) => {
+  try {
+    
+    const id = parseInt(req.params.id)
+
+    const umkm = await business({id})
+
+    if(!umkm) {
+      return res.status(400).json({message : "umkm tidak ditemukan"})
+    }
+
+     res.json({ message : "Data Ditemukan", umkm})
+  } catch (error) {
+    return res.status(500).json({error : error.message})
+    
+    
+  }
+}

@@ -1,7 +1,7 @@
 import prisma from "../db/index.js";
 
 
-export const search = async({q, category}) =>{
+export const search = async({ q, category, page = 1, limit = 10}) =>{
       
      let where = {
             isActive : true,
@@ -18,20 +18,35 @@ export const search = async({q, category}) =>{
     if (category) {
         where.category = {slug : category}
     }
-const Business = await prisma.business.findMany({
+const business = await prisma.business.findMany({
     
     where,
     include : {
         category : true,
         photos:{ where: { isPrimary: true }, take: 1 },
-        reviews:true
+        reviews:{
+          select: {id: true}
+        }
 
     },
     orderBy: {sustainabilityScore: "desc"},
 
 })
 
-return {Business}
+//pagination
+
+const total = await prisma.business.count({where});
+
+return {
+  data: business,
+  meta: {
+    total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+  }
+}
+
 }
 
 
@@ -86,4 +101,31 @@ export const nearby = async({ lat, lng, radius }) => {
       .sort((a, b) => a.distance - b.distance); // urut jarak terdekat
 
       return {withDistance}
+}
+
+
+export const business = async({id}) => {
+
+  const umkm = await prisma.business.findUnique({where : {id},
+
+    include : {
+      category: true,
+      owner: {
+        select: {id: true, email: true, fullName: true}
+      },
+      photos: true,
+      reviews: {
+        include : {
+          user : {
+            select: {id : true, fullName:true, avatar:true}
+          },
+
+        },
+        
+      },
+        sustainabilityPractices: true
+    },
+   
+  })
+  return(umkm)
 }
