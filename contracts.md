@@ -212,10 +212,21 @@ Response: Business & {
 - Cache frequently accessed data (categories, locations)
 - Debounce search input to reduce API calls
 
+## WebGIS-Specific Features Added:
+- Interactive Leaflet map with custom markers showing sustainability scores
+- Real-time filtering that updates map markers dynamically  
+- Clickable markers with business popup details
+- Map legend and business counter
+- Background map in hero section with overlay
+- Mobile-responsive map interface
+- Custom marker icons with color-coded sustainability levels
+
 ## Next Steps for Backend Implementation:
-1. Create MongoDB collections and models
+1. Create MongoDB collections and models with coordinates support
 2. Implement CRUD operations for businesses and testimonials
-3. Add search functionality with filtering
-4. Seed database with sample data
-5. Test all endpoints
-6. Update frontend to use real APIs
+3. Add geospatial search functionality with filtering
+4. Create geospatial indexes for efficient location-based queries
+5. Seed database with sample data including valid coordinates
+6. Add endpoint for nearby businesses within radius
+7. Test all endpoints including geospatial queries
+8. Update frontend to use real APIs with map integration
