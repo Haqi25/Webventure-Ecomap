@@ -5,13 +5,17 @@ This document outlines the API contracts needed to integrate the Media UMKM WebG
 
 ## Current Mock Data Structure
 
-### UMKM Business Model
+### UMKM Business Model (Enhanced for WebGIS)
 ```javascript
 {
   id: number,
   name: string,
   category: string,
   location: string,
+  coordinates: {
+    lat: number,    // Required for map positioning
+    lng: number     // Required for map positioning
+  },
   rating: number (1-5),
   image: string (URL),
   sustainabilityScore: number (0-100),
