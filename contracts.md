@@ -118,13 +118,17 @@ Response: Business & {
 
 ## Database Models
 
-### Business Collection
+### Business Collection (Enhanced for WebGIS)
 ```javascript
 {
   _id: ObjectId,
   name: String (required),
   category: String (required),
   location: String (required),
+  coordinates: {
+    lat: Number (required),  // Latitude for map positioning
+    lng: Number (required)   // Longitude for map positioning
+  },
   description: String,
   sustainabilityScore: Number (0-100),
   sustainabilityBadges: [String],
