@@ -1,0 +1,300 @@
+{
+  "name": "Media UMKM Design Tokens",
+  "version": "1.0.0",
+  "colors": {
+    "primary": {
+      "green": {
+        "value": "#8FEC78",
+        "type": "color",
+        "description": "Primary green for CTAs and accents"
+      },
+      "green-strong": {
+        "value": "#81DD67", 
+        "type": "color",
+        "description": "Stronger green for hover states"
+      },
+      "blue": {
+        "value": "#3B82F6",
+        "type": "color", 
+        "description": "Trust and secondary elements"
+      }
+    },
+    "text": {
+      "primary": {
+        "value": "#003720",
+        "type": "color",
+        "description": "Main headings and important text"
+      },
+      "body": {
+        "value": "#0E0F0C",
+        "type": "color",
+        "description": "Body text and descriptions"
+      },
+      "secondary": {
+        "value": "#83928C",
+        "type": "color",
+        "description": "Supporting text and captions"
+      },
+      "muted": {
+        "value": "#AFB7B4",
+        "type": "color",
+        "description": "Timestamps and subtle text"
+      }
+    },
+    "background": {
+      "white": {
+        "value": "#FFFFFF",
+        "type": "color",
+        "description": "Main background and cards"
+      },
+      "section": {
+        "value": "rgba(0,0,0,0.02)",
+        "type": "color",
+        "description": "Subtle section backgrounds"
+      },
+      "accent-wash": {
+        "value": "rgba(148,242,127,0.1)",
+        "type": "color",
+        "description": "Light accent backgrounds"
+      }
+    },
+    "border": {
+      "light": {
+        "value": "rgba(0,0,0,0.1)",
+        "type": "color"
+      },
+      "medium": {
+        "value": "rgba(0,0,0,0.2)", 
+        "type": "color"
+      },
+      "strong": {
+        "value": "rgba(0,0,0,0.3)",
+        "type": "color"
+      }
+    }
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": {
+        "value": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto'",
+        "type": "fontFamily"
+      }
+    },
+    "fontSizes": {
+      "hero": {
+        "desktop": {
+          "value": "72px",
+          "type": "fontSize"
+        },
+        "mobile": {
+          "value": "36px", 
+          "type": "fontSize"
+        }
+      },
+      "heading-2": {
+        "desktop": {
+          "value": "48px",
+          "type": "fontSize"  
+        },
+        "mobile": {
+          "value": "30px",
+          "type": "fontSize"
+        }
+      },
+      "heading-3": {
+        "value": "24px",
+        "type": "fontSize"
+      },
+      "body-large": {
+        "desktop": {
+          "value": "20px",
+          "type": "fontSize"
+        },
+        "mobile": {
+          "value": "18px",
+          "type": "fontSize"
+        }
+      },
+      "body-medium": {
+        "desktop": {
+          "value": "18px",
+          "type": "fontSize"
+        },
+        "mobile": {
+          "value": "16px",
+          "type": "fontSize"
+        }
+      },
+      "body-small": {
+        "value": "14px",
+        "type": "fontSize"
+      },
+      "caption": {
+        "value": "12px",
+        "type": "fontSize"
+      }
+    },
+    "fontWeights": {
+      "regular": {
+        "value": "400",
+        "type": "fontWeight"
+      },
+      "medium": {
+        "value": "500",
+        "type": "fontWeight"  
+      },
+      "semibold": {
+        "value": "600",
+        "type": "fontWeight"
+      },
+      "bold": {
+        "value": "700", 
+        "type": "fontWeight"
+      }
+    },
+    "lineHeights": {
+      "tight": {
+        "value": "0.9",
+        "type": "lineHeight"
+      },
+      "snug": {
+        "value": "1.2", 
+        "type": "lineHeight"
+      },
+      "normal": {
+        "value": "1.5",
+        "type": "lineHeight"
+      },
+      "relaxed": {
+        "value": "1.6",
+        "type": "lineHeight"
+      }
+    }
+  },
+  "spacing": {
+    "xs": {
+      "value": "8px",
+      "type": "spacing"
+    },
+    "sm": {
+      "value": "16px", 
+      "type": "spacing"
+    },
+    "md": {
+      "value": "24px",
+      "type": "spacing"
+    },
+    "lg": {
+      "value": "32px",
+      "type": "spacing"  
+    },
+    "xl": {
+      "value": "48px",
+      "type": "spacing"
+    },
+    "2xl": {
+      "value": "64px",
+      "type": "spacing"
+    },
+    "3xl": {
+      "value": "96px",
+      "type": "spacing"
+    }
+  },
+  "borderRadius": {
+    "sm": {
+      "value": "4px",
+      "type": "borderRadius"
+    },
+    "md": {
+      "value": "8px",
+      "type": "borderRadius"
+    },
+    "lg": {
+      "value": "12px", 
+      "type": "borderRadius"
+    },
+    "xl": {
+      "value": "16px",
+      "type": "borderRadius"
+    },
+    "2xl": {
+      "value": "24px",
+      "type": "borderRadius"
+    },
+    "full": {
+      "value": "9999px",
+      "type": "borderRadius"
+    }
+  },
+  "shadows": {
+    "sm": {
+      "value": "0 1px 2px rgba(0,0,0,0.05)",
+      "type": "boxShadow"
+    },
+    "md": {
+      "value": "0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1)",
+      "type": "boxShadow"
+    },
+    "lg": {
+      "value": "0 4px 12px rgba(0,0,0,0.1)",
+      "type": "boxShadow"
+    },
+    "xl": {
+      "value": "0 8px 24px rgba(0,0,0,0.15)", 
+      "type": "boxShadow"
+    },
+    "button-hover": {
+      "value": "0 4px 8px rgba(148,242,127,0.3)",
+      "type": "boxShadow"
+    }
+  },
+  "components": {
+    "button": {
+      "primary": {
+        "backgroundColor": "linear-gradient(135deg, #8FEC78 0%, #81DD67 100%)",
+        "color": "#FFFFFF",
+        "borderRadius": "{borderRadius.full}",
+        "padding": "14px 24px",
+        "fontSize": "{typography.fontSizes.body-medium.desktop}",
+        "fontWeight": "{typography.fontWeights.semibold}",
+        "minHeight": "48px",
+        "boxShadow": "{shadows.sm}"
+      },
+      "secondary": {
+        "backgroundColor": "transparent",
+        "color": "{colors.text.primary}",
+        "border": "1px solid {colors.border.light}",
+        "borderRadius": "{borderRadius.full}",
+        "padding": "14px 24px",
+        "fontSize": "{typography.fontSizes.body-medium.desktop}",
+        "fontWeight": "{typography.fontWeights.medium}",
+        "minHeight": "48px"
+      }
+    },
+    "card": {
+      "business": {
+        "backgroundColor": "{colors.background.white}",
+        "border": "1px solid {colors.border.light}",
+        "borderRadius": "{borderRadius.lg}",
+        "padding": "{spacing.md}",
+        "boxShadow": "{shadows.md}",
+        "width": "350px"
+      }
+    }
+  },
+  "breakpoints": {
+    "mobile": {
+      "value": "767px",
+      "type": "breakpoint"
+    },
+    "tablet": {
+      "value": "1023px", 
+      "type": "breakpoint"
+    },
+    "desktop": {
+      "value": "1024px",
+      "type": "breakpoint"
+    }
+  }
+}
