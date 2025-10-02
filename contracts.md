@@ -1,7 +1,7 @@
-# Media UMKM - API Contracts & Integration Plan
+# Media UMKM - WebGIS Platform API Contracts & Integration Plan
 
 ## Overview
-This document outlines the API contracts needed to integrate the Media UMKM frontend with the backend, replacing mock data with real functionality.
+This document outlines the API contracts needed to integrate the Media UMKM WebGIS platform frontend with the backend, replacing mock data with real functionality. The platform now features an interactive map component powered by Leaflet/React-Leaflet for enhanced user experience.
 
 ## Current Mock Data Structure
 
