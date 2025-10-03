@@ -1,4 +1,5 @@
-import { getDataDashboard } from "../../services/admin/dashboard.services.js";
+import { getDataDashboard } from "../services/dashboard.services.js"
+
 
 
 
