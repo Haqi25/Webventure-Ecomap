@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { store } from "../controllers/category.controller.js"
+import { store } from "../admin/controllers/category.controller.js"
 import { getNearby, searchUmkm, businessId } from "../controllers/business.controller.js"
 const router = Router();
 
