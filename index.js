@@ -8,6 +8,8 @@ import { adminMiddleware } from "./src/middlewares/admin.middleware.js";
 import { authMiddleware } from "./src/middlewares/auth.middleware.js";
 import profile from "./src/routes/profile.routes.js"
 import getData from "./src/routes/admin/dashboard.routes.js"
+import getDataUser from "./src/admin/routes/user.data.routes.js"
+
 
 const app = express();
 
@@ -28,7 +30,7 @@ app.use("/api/review", authMiddleware, review )
 
 //Admin
 
-app.use("/api/admin", adminMiddleware, getData)
+app.use("/api/admin", adminMiddleware, getData, getDataUser)
 
 const PORT = process.env.PORT || 3000;
 
