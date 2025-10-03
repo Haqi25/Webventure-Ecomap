@@ -40,7 +40,7 @@ export const getNearby = async (req, res) => {
 export const businessId = async(req, res) => {
   try {
     
-    const id = parseInt(req.params.id)
+    const id = req.params.id
 
     const umkm = await business({id})
 
