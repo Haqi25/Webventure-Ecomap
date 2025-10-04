@@ -1,9 +1,12 @@
 import { Router } from "express";
-import { store } from "../controllers/category.controller.js";
-import { adminMiddleware } from "../middlewares/admin.middleware.js";
+import { store, getAllCategory, searchCategory, editCategory, deleteCategory} from "../admin/controllers/category.controller.js";
+
 
 
 const router = Router()
 router.post("/store",store)
-
+router.get("/allUmkm",getAllCategory )
+router.get("/search", searchCategory)
+router.patch("/editCategory/:id", editCategory)
+router.delete("/deleteCategory/:id", deleteCategory)
 export default router

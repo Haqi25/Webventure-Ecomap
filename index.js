@@ -7,7 +7,7 @@ import review from "./src/routes/review.routes.js"
 import { adminMiddleware } from "./src/middlewares/admin.middleware.js";
 import { authMiddleware } from "./src/middlewares/auth.middleware.js";
 import profile from "./src/routes/profile.routes.js"
-import getData from "./src/routes/admin/dashboard.routes.js"
+import getData from "./src/admin/routes/dashboard.routes.js"
 import getDataUser from "./src/admin/routes/user.data.routes.js"
 
 
