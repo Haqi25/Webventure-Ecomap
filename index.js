@@ -6,9 +6,11 @@ import category from "./src/routes/category.routes.js"
 import review from "./src/routes/review.routes.js"
 import { adminMiddleware } from "./src/middlewares/admin.middleware.js";
 import { authMiddleware } from "./src/middlewares/auth.middleware.js";
+import {umkmMiddleware} from "./src/middlewares/umkm.middleware.js";
 import profile from "./src/routes/profile.routes.js"
 import getData from "./src/admin/routes/dashboard.routes.js"
 import getDataUser from "./src/admin/routes/user.data.routes.js"
+import ownerBusiness from "./src/owner/routes/business.routes.js"
 
 
 const app = express();
@@ -31,6 +33,12 @@ app.use("/api/review", authMiddleware, review )
 //Admin
 
 app.use("/api/admin", adminMiddleware, getData, getDataUser)
+
+
+//owner business(umkm)
+
+app.use("/api/owner", umkmMiddleware, ownerBusiness)
+
 
 const PORT = process.env.PORT || 3000;
 
