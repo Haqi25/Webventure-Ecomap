@@ -8,20 +8,20 @@ export const adminMiddleware = async ( req, res, next) => {
     try {
         
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const role = await prisma.users.findUnique({
+        const user = await prisma.users.findUnique({
             where : {id : decoded.id}
         })
 
-        if(!role){
+        if(!user){
             return res.status(404).json({error : "User Tidak Ditemukan"})
         }
 
-        if(role.role !== "ADMIN"){
+        if(user.role !== "ADMIN"){
               return res.status(400).json({error : "Url Tidak Ditemukan"})
         }
 
-        req.roleId = role.id,
-        req.roleRole = role.role,
+        req.userId = user.id,
+        req.userRole = user.role,
         next()
     } catch (error) {
         res.status(403).json({ error : "invalid Token"})
