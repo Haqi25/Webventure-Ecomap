@@ -124,14 +124,13 @@ model BusinessPhoto {
 
 
 model BusinessAnalytics {
-  id         Int        @id @default(autoincrement())
-  actionType ActionType
-  userIp     String?
-  userAgent  String?
-  referrer   String?
-  createdAt  DateTime   @default(now())
- businessId Int
- business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  id          Int      @id @default(autoincrement())
+  businessId  Int
+  actionType  String        // contoh: "view", "click", "share"
+  metadata    Json?         // data tambahan misalnya { "source": "homepage" }
+  createdAt   DateTime @default(now())
+
+  business    Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
 
   @@map("business_analytics")
 }
@@ -150,6 +149,7 @@ model SustainabilityPractice {
   practiceDescription String?
   isVerified          Boolean  @default(false)
   scoreWeight         Int      @default(10)
+  workers      Int      @default(0)
   createdAt           DateTime @default(now())
    businessId Int
   business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
