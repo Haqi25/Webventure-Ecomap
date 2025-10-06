@@ -1,5 +1,5 @@
 import prisma from "../db/index.js"
-import { search, nearby,  business } from "../services/business.service.js";
+import { search, nearby,  business,allBusiness  } from "../services/business.service.js";
 
 export const searchUmkm = async (req, res) => {
   try {
@@ -53,5 +53,17 @@ export const businessId = async(req, res) => {
     return res.status(500).json({error : error.message})
     
     
+  }
+}
+
+export const getAllBusiness = async(req, res) => {
+
+  try {
+    
+    const business = await allBusiness()
+
+    res.json({business})
+  } catch (error) {
+    return res.status(500).json({error : error.message})
   }
 }

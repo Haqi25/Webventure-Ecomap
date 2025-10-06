@@ -129,3 +129,33 @@ export const business = async({id}) => {
   })
   return(umkm)
 }
+
+
+export  const allBusiness  = async() => {
+
+
+ 
+
+  
+  const business = await prisma.business.findMany({
+   where : {
+    isApproved: true
+   },
+   
+   select : {
+    businessName : true,
+    description : true,
+    averageRating : true,
+    reviews: true,
+    address: true,
+    photos : {where : 
+      {isPrimary : true}
+     }
+    
+   }
+    
+  })
+
+
+  return business
+}
