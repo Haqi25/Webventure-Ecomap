@@ -1,4 +1,9 @@
-import { storeBusiness, patchBusiness, storeSustainabilityPractice, storeBusinessAnalytics } from "../services/business.service.js";
+import { storeBusiness, 
+         patchBusiness,
+         storeSustainabilityPractice, 
+         storeBusinessAnalytics,
+         storeBusinessPhoto,
+       } from "../services/business.service.js";
 
 
 export const createBusiness = async (req, res) => {
@@ -140,4 +145,28 @@ const allowed = ["view", "click", "share", "review"];
 } catch (error) {
   return res.status(500).json({error : error.message})
 }
+}
+
+
+export const addBusinessPhoto = async(req, res) => {
+
+  try {
+   const {id} = req.params
+   const isPrimary = req.body.isPrimary === "true";
+   const file = req.file
+
+
+   const photo = await storeBusinessPhoto({
+    businessId : Number(id),
+    file,
+    isPrimary
+   })
+
+   res.json({message : "Berhasil Di upload", photo})
+  } catch (error) {
+
+    return res.status(500).json({error : error.message})
+    
+  }
+
 }

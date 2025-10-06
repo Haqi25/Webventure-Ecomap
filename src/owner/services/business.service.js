@@ -92,3 +92,26 @@ export const storeBusinessAnalytics = async({businessId, actionType, metaData}) 
 
   return business
 }
+
+
+export const storeBusinessPhoto = async({file, businessId, isPrimary}) => {
+
+  if(!file){
+    throw new Error("File Tidak Ditemukan")
+  }
+
+
+  const photo = await prisma.businessPhoto.create({
+    data : {
+      businessId: Number(businessId),
+      fileName: file.originalname,
+      filePath: file.path,
+      fileSize: file.size,
+      mimeType: file.mimetype,
+      isPrimary: isPrimary ?? false
+    }
+  })
+
+  return photo
+
+}
