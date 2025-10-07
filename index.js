@@ -11,7 +11,9 @@ import profile from "./src/routes/profile.routes.js"
 import getData from "./src/admin/routes/dashboard.routes.js"
 import getDataUser from "./src/admin/routes/user.data.routes.js"
 import ownerBusiness from "./src/owner/routes/business.routes.js"
-import approvalBusiness from "./src/admin/routes/approved.business.routes.js"
+import approvalBusiness from "./src/admin/routes/approval.business.routes.js"
+import getUmkm from "./src/admin/routes/business.routes.js"
+import sustainabilityPractice  from "./src/admin/routes/approval.sustainabilitypractice.js"
 
 
 const app = express();
@@ -33,7 +35,13 @@ app.use("/api/review", authMiddleware, review )
 
 //Admin
 
-app.use("/api/admin", adminMiddleware, getData, getDataUser, approvalBusiness)
+app.use("/api/admin", 
+    adminMiddleware, 
+    getData,
+     getDataUser, 
+    approvalBusiness,  
+    getUmkm, 
+    sustainabilityPractice)
 
 
 //owner business(umkm)
