@@ -106,8 +106,9 @@ export const nearby = async({ lat, lng, radius }) => {
 
 export const business = async({id}) => {
 
-  const umkm = await prisma.business.findUnique({where : {id},
-
+  const umkm = await prisma.business.findUnique(
+    {where : {id : Number(id), isApproved: true},
+  
     include : {
       category: true,
       owner: {
@@ -133,10 +134,6 @@ export const business = async({id}) => {
 
 export  const allBusiness  = async() => {
 
-
- 
-
-  
   const business = await prisma.business.findMany({
    where : {
     isApproved: true
