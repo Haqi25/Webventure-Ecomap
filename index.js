@@ -16,6 +16,7 @@ import getUmkm from "./src/admin/routes/business.routes.js"
 import sustainabilityPractice  from "./src/admin/routes/approval.sustainabilitypractice.js"
 
 
+
 const app = express();
 
 app.use(express.json());
@@ -28,9 +29,9 @@ res.send('Hello World!');
 //Consumer
 app.use("/api/auth", authUser);
 app.use("/api/umkm", umkm);
-app.use("/api/admin/category", adminMiddleware, category)
 app.use("/api/profile", authMiddleware, profile)
 app.use("/api/review", authMiddleware, review )
+
 
 
 //Admin
@@ -42,6 +43,7 @@ app.use("/api/admin",
     approvalBusiness,  
     getUmkm, 
     sustainabilityPractice)
+    app.use("/api/admin/category", adminMiddleware, category)
 
 
 //owner business(umkm)
