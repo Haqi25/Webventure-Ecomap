@@ -33,7 +33,7 @@ const business = await prisma.business.findMany({
 
 })
 
-//pagination
+
 
 const total = await prisma.business.count({where});
 
@@ -55,7 +55,7 @@ export const nearby = async({ lat, lng, radius }) => {
     const longitude = parseFloat(lng);
     const distanceInKm = parseFloat(radius) || 10;
 
-    // Approximate bounding box (±1° ~ 111km)
+  
     const degreeRadius = distanceInKm / 111;
 
     const businesses = await prisma.business.findMany({
@@ -76,12 +76,12 @@ export const nearby = async({ lat, lng, radius }) => {
       },
     });
 
-    // Hitung jarak pakai haversine manual di JS
+    
     const toRad = (value) => (value * Math.PI) / 180;
 
     const withDistance = businesses
       .map((biz) => {
-        const R = 6371; // Earth radius in km
+        const R = 6371; 
         const dLat = toRad(biz.latitude - latitude);
         const dLon = toRad(biz.longitude - longitude);
 
@@ -97,8 +97,8 @@ export const nearby = async({ lat, lng, radius }) => {
 
         return { ...biz, distance };
       })
-      .filter((biz) => biz.distance <= distanceInKm) // filter radius
-      .sort((a, b) => a.distance - b.distance); // urut jarak terdekat
+      .filter((biz) => biz.distance <= distanceInKm) 
+      .sort((a, b) => a.distance - b.distance); 
 
       return {withDistance}
 }
@@ -131,7 +131,7 @@ export const business = async({id}) => {
   return(umkm)
 }
 
-//ambil semua bisnis/umkm
+
 export  const allBusiness  = async() => {
 
   const business = await prisma.business.findMany({
@@ -158,7 +158,7 @@ export  const allBusiness  = async() => {
   return business
 }
 
-//ambil 3 bisnis/umkm
+
 export const displayThreeBusiness = async () => {
 
 const business = await prisma.business.findMany({
