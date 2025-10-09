@@ -5,7 +5,6 @@ export const searchUmkm = async (req, res) => {
   try {
     const { q, category, page = 1, limit = 10 } = req.query;
 
-    // service return { data, meta }
     const { data, meta } = await search({ q, category, page: Number(page), limit: Number(limit) });
 
     res.json({
@@ -56,7 +55,7 @@ export const businessId = async(req, res) => {
   }
 }
 
-//function untuk ambil semua bisnis/umkm
+
 export const getAllBusiness = async(req, res) => {
 
   try {
@@ -70,7 +69,6 @@ export const getAllBusiness = async(req, res) => {
 }
 
 
-//function ambil 3 bisnis/umkm 
 export const threeBusiness = async (req, res) => {
 
   try {
