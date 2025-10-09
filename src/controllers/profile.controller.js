@@ -1,6 +1,5 @@
 import { updateProfile, userProfile } from "../services/profile.service.js";
 
-
 export const profile = async (req, res) => {
     
     try {
@@ -12,7 +11,6 @@ export const profile = async (req, res) => {
         return res.status(500).json({ error : error.message})
     }
 }
-
 
 export const editProfile = async (req, res) => {
  const userId = req.userId;
