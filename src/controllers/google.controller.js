@@ -14,4 +14,4 @@ export const google = async (req, res) => {
 }
 
 
-//openid email profile
+
