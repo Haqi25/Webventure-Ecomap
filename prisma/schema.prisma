@@ -126,8 +126,8 @@ model BusinessPhoto {
 model BusinessAnalytics {
   id          Int      @id @default(autoincrement())
   businessId  Int
-  actionType  String        // contoh: "view", "click", "share"
-  metadata    Json?         // data tambahan misalnya { "source": "homepage" }
+  actionType  String        // view, click, share
+  metadata    Json?         //  { "source": "homepage" }
   createdAt   DateTime @default(now())
 
   business    Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
