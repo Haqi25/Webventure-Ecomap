@@ -2,9 +2,6 @@ import multer from "multer";
 import path from "path";
 
 
-//config storage
-
-
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "uploads/")
@@ -12,12 +9,11 @@ const storage = multer.diskStorage({
 
     filename : (req, file, cb) =>  {
         const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-         cb(null, uniqueSuffix + path.extname(file.originalname)); // nama unik
+         cb(null, uniqueSuffix + path.extname(file.originalname)); 
     }
 });
 
 
-//filter only image
 
 const fileFilter = (req, file, cb) => {
    if (file.mimetype.match(/^image\/(jpeg|png|webp)$/)) {
