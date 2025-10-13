@@ -1,4 +1,4 @@
-"use client"; // <-- WAJIB tambahkan ini
+"use client"; 
 
 import { ReactNode } from 'react';
 import Script from 'next/script';
