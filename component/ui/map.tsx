@@ -35,7 +35,7 @@ export default function MapComponent() {
         </Marker>
 
         <Marker position={[-7.25, 112.75]}>
-          <Popup>Surabaya - UMKM Kreatif</Popup>
+          <Popup>Surabaya - UMKM Kreatif ss</Popup>
         </Marker>
       </MapContainer>
     </div>
